@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="contactApp">
+<head>
+	<title>CONTACT LIST APP</title>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
+
+</head>
+<body>
+	<div class="container" ng-controller="appControl">
+		<h1>MEAN STACK - CONTACT LIST APP</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Contact Number</th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+			<!-- <form class="form-validation"> -->
+				<tr>
+					<td>
+						<input type="text" class="form-control" ng-model="contact.name" placeholder="eg: name" >
+					</td>
+					<td>
+						<input type= "email" class="form-control" ng-model="contact.email"  placeholder="username@testmail.com" >
+						
+
+					</td>
+					<td>
+						<input type = "number" class="form-control" ng-model="contact.number"  placeholder="eg: 1234567890" > 
+	
+    
+					</td>
+					<td>
+						<button class="btn btn-primary" ng-click="addContact()">Add Contact</button>
+					</td>
+					<td>	
+						<button class="btn btn-info" ng-click="update()">Update</button>
+
+						<button class="btn btn-default" ng-click="deselect()">Clear</button>
+					</td>
+				</tr>
+				<tr ng-repeat="contact in contactList | startFrom:(currentPage-1)*itemPerPage | limitTo:itemPerPage">
+					<td>{{contact.name}}</td>
+					<td>{{contact.email}}</td>
+					<td>{{contact.number}}</td>
+					<td>
+					<button class="btn btn-danger" ng-click="remove(contact._id)">Remove
+					</button>
+					</td>
+					<td>
+
+					<button class="btn btn-warning" ng-click="edit(contact._id)">Edit</button></td>
+				</tr>
+			<!-- </form>	 -->
+			</tbody>
+		</table>
+			<input type="button" class="btn btn-warning" value="prev" ng-click="prev()" ng-disabled="currentPage == 1"></input>
+	<input type="button" class="btn btn-warning" value="next" ng-click="next()" ng-disabled="currentPage == numberOfPages"></input>
+</div>
+	</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+<script src="controllers/controller.js"></script>
+</body>
+</html>
